@@ -28,7 +28,9 @@
             #endregion
 
             #region b
-
+            //b)  What is the difference between a sealed class and a sealed method?
+            //A sealed class cannot be inherited by any other class.
+            //A sealed method is a method that cannot be overridden in any derived class, but the class itself can still be inherited.
             #endregion
 
             #region c
