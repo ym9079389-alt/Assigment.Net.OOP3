@@ -12,7 +12,11 @@
             //while method overriding is to change the base function in more than one place.
             #endregion
 
-
+            #region b
+            //b)  What is the difference between Static Binding and Dynamic Binding?
+            //Static Binding => Early Binding is called during code reading.
+            //Dynamic Binding => Late لآinding is called in run time.
+            #endregion
 
             #endregion
         }
