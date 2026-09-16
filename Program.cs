@@ -34,7 +34,8 @@
             #endregion
 
             #region c
-
+            //c)  Can a sealed method be overridden? Why?
+            //Yes, this keyword prevents inheritance for any method after that, not just the method it is on.
             #endregion
 
             #endregion
