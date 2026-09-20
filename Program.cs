@@ -1,4 +1,6 @@
-﻿namespace Assigment.Net.OOP3
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace Assigment.Net.OOP3
 {
     internal class Program
     {
@@ -11,6 +13,11 @@
             // Abstraction concept of hiding complex implementation details and showing only the finl result of an object to the user.
             #endregion
 
+            #region b
+            //b)  Why is abstraction considered one of the four pillars of OOP ?
+            //Enhances Maintainability & Security: Protects internal code from changes.
+            //Enables Reusability: Provides reusable blueprints across the project.
+            #endregion
 
             #endregion
         }
