@@ -2,101 +2,102 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assigment.Net.OOP3;
-
-public class DeliveryCenter
+namespace Assigment.Net.OOP3
 {
-    public string CenterName { get; set; }
-    private Shipment[] shipments;
-    private int count;
-
-    public DeliveryCenter(string centerName)
+    public class DeliveryCenter
     {
-        CenterName = centerName;
-        shipments = new Shipment[20];
-        count = 0;
-    }
+        public string CenterName { get; set; }
+        private Shipment[] shipments;
+        private int count;
 
-    public Driver Driver { get; set; }
-
-    public Shipment this[int index]
-    {
-        get
+        public DeliveryCenter(string centerName)
         {
-            if (shipments != null && index >= 0 && index < count)
-            {
-                return shipments[index];
-            }
-            return default;
+            CenterName = centerName;
+            shipments = new Shipment[20];
+            count = 0;
         }
-        set
-        {
-            if (shipments != null && index >= 0 && index < count)
-            {
-                shipments[index] = value;
-            }
-        }
-    }
 
-    public Shipment this[string trackingCode]
-    {
-        get
+        public Driver Driver { get; set; }
+
+        public Shipment this[int index]
+        {
+            get
+            {
+                if (shipments != null && index >= 0 && index < count)
+                {
+                    return shipments[index];
+                }
+                return default;
+            }
+            set
+            {
+                if (shipments != null && index >= 0 && index < count)
+                {
+                    shipments[index] = value;
+                }
+            }
+        }
+
+        public Shipment this[string trackingCode]
+        {
+            get
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    if (shipments[i] != null && shipments[i].TrackingCode.Equals(trackingCode, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return shipments[i];
+                    }
+                }
+                return null;
+            }
+        }
+
+        public bool AddShipment(Shipment shipment)
+        {
+            if (count < 20)
+            {
+                shipments[count] = shipment;
+                count++;
+                //Console.WriteLine("Shipment Added Successfully");
+                return true;
+            }
+            return false;
+        }
+        public bool RemoveShipment(string trackingCode)
+        {
+            Shipment[] tempArray = new Shipment[20];
+            int newCount = 0;
+            bool isFound = false;
+
+            for (int i = 0; i < count; i++)
+            {
+                if (shipments[i] != null && !shipments[i].TrackingCode.Equals(trackingCode, StringComparison.OrdinalIgnoreCase))
+                {
+                    tempArray[newCount] = shipments[i];
+                    newCount++;
+                }
+                else
+                {
+                    isFound = true;
+                }
+            }
+
+            if (isFound)
+            {
+                shipments = tempArray;
+                count = newCount;
+            }
+
+            return isFound;
+        }
+        public void PrintAllShipments()
         {
             for (int i = 0; i < count; i++)
             {
-                if (shipments[i] != null && shipments[i].TrackingCode.Equals(trackingCode, StringComparison.OrdinalIgnoreCase))
-                {
-                    return shipments[i];
-                }
+                shipments[i].PrintShipment();
+                Console.WriteLine("--------------------------------------------------");
             }
-            return null;
-        }
-    }
-
-    public bool AddShipment(Shipment shipment)
-    {
-        if (count < 20)
-        {
-            shipments[count] = shipment;
-            count++;
-            //Console.WriteLine("Shipment Added Successfully");
-            return true;
-        }
-        return false;
-    }
-    public bool RemoveShipment(string trackingCode)
-    {
-        Shipment[] tempArray = new Shipment[20];
-        int newCount = 0;
-        bool isFound = false;
-
-        for (int i = 0; i < count; i++)
-        {
-            if (shipments[i] != null && !shipments[i].TrackingCode.Equals(trackingCode, StringComparison.OrdinalIgnoreCase))
-            {
-                tempArray[newCount] = shipments[i];
-                newCount++;
-            }
-            else
-            {
-                isFound = true;
-            }
-        }
-
-        if (isFound)
-        {
-            shipments = tempArray;
-            count = newCount;
-        }
-
-        return isFound;
-    }
-    public void PrintAllShipments()
-    {
-        for (int i = 0; i < count; i++)
-        {
-            shipments[i].PrintShipment();
-            Console.WriteLine("--------------------------------------------------");
         }
     }
 }
